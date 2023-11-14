@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/book/create}" th:object="${bookForm}" th:method="post">
+            <div class="col-3">
+                <label for="title">Book Title:</label>
+                <input th:type="text" th:field="*{title}" id="title" class="form-control">
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+            </div>
+            <div class="col-3">
+                <label for="publishedYear">Published Year:</label>
+                <input th:type="text" th:field="*{publishedYear}" id="publishedYear" class="form-control">
+                <span th:if="${#fields.hasErrors('publishedYear')}" th:errors="*{publishedYear}" class="text-danger"></span>
+            </div>
+    <!--        <div class="col-3">-->
+    <!--            <label for="title">Autho</label>-->
+    <!--            <input th:type="text" th:field="*{title}" id="title" class="form-control">-->
+    <!--            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>-->
+    <!--        </div>-->
+            <div class="col-3">
+                <label for="noOfPages">Number of pages:</label>
+                <input th:type="text" th:field="*{noOfPages}" id="noOfPages" class="form-control">
+                <span th:if="${#fields.hasErrors('noOfPages')}" th:errors="*{noOfPages}" class="text-danger"></span>
+            </div>
+            <div class="col-3">
+                <input class="btn-primary" type="submit"/>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
