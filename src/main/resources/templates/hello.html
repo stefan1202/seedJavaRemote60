@@ -14,15 +14,18 @@
             <div class="col-4">
                 <label for="name">Name</label>
                 <input th:type="text" th:field="*{name}" id="name" class="form-control">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
             </div>
             <div class="col-4">
                 <label for="lastName">LastName</label>
                 <input th:type="text" th:field="*{lastName}" id="lastName" class="form-control">
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
             </div>
             <div class="col-4">
                 <label for="age">Age:</label>
 
                 <input th:type="number" th:field="*{age}" id="age" class="form-control">
+                <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="text-danger"></span>
             </div>
             <div class="col-4">
                 <input class="btn-primary" type="submit"/>
