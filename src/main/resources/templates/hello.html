@@ -8,15 +8,27 @@
 </head>
 <body>
 <div class="container">
-<h1>Hello World <span th:text="${name}"></span></h1>
-<p th:text="${time}"></p>
-<div class="row">
-    <div class="col-4">Test</div>
-    <div class="col-8">Test 2</div>
-</div>
-    <form th:object="${}">
-        <input class="btn-primary" type="submit"/>
-    </form>
+    <h1>Hello World <span th:text="${name}"></span></h1>
+    <div class="row">
+        <form th:object="${formObject}" th:action="@{/process}" th:method="post">
+            <div class="col-4">
+                <label for="name">Name</label>
+                <input th:type="text" th:field="*{name}" id="name" class="form-control">
+            </div>
+            <div class="col-4">
+                <label for="lastName">LastName</label>
+                <input th:type="text" th:field="*{lastName}" id="lastName" class="form-control">
+            </div>
+            <div class="col-4">
+                <label for="age">Age:</label>
+
+                <input th:type="number" th:field="*{age}" id="age" class="form-control">
+            </div>
+            <div class="col-4">
+                <input class="btn-primary" type="submit"/>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

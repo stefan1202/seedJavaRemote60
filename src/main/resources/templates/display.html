@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+            <td>No</td>
+            <td>Name</td>
+            <td>LastName</td>
+            <td>Age</td>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td th:text="${author.name}"></td>
+            <td th:text="${author.lastName}"></td>
+            <td th:text="${author.age}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
