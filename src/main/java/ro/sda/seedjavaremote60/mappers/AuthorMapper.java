@@ -9,7 +9,9 @@ public class AuthorMapper implements Mapper<Author, AuthorEntity>{
 
     @Override
     public Author toDto(AuthorEntity entity) {
-
+        if (entity==null){
+            return null;
+        }
         return Author.builder()
                 .age(entity.getVarsta())
                 .name(entity.getName())
@@ -20,6 +22,9 @@ public class AuthorMapper implements Mapper<Author, AuthorEntity>{
 
     @Override
     public AuthorEntity toEntity(Author dto) {
+        if (dto==null){
+            return null;
+        }
         return AuthorEntity.builder()
                 .name(dto.getName())
                 .lastName(dto.getLastName())

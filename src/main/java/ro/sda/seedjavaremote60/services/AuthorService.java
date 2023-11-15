@@ -41,4 +41,10 @@ public class AuthorService {
 
         return authorMapper.toDto(entity);
     }
+
+    public void  deleteAuthorByID(Long id) throws EntityNotFoundException {
+        AuthorEntity entity = authorsRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Author with id " + id + " not found"));
+        authorsRepository.deleteById(id);
+
+    }
 }
