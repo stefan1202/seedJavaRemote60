@@ -1,26 +1,33 @@
 package ro.sda.seedjavaremote60.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ro.sda.seedjavaremote60.entities.AuthorEntity;
+import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
+import ro.sda.seedjavaremote60.mappers.AuthorMapper;
 import ro.sda.seedjavaremote60.models.Author;
+import ro.sda.seedjavaremote60.repositories.AuthorsRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-
+@RequiredArgsConstructor
 public class AuthorService {
-    private final List<Author> authors = new ArrayList<Author>();
+    private final AuthorsRepository authorsRepository;
+    private final AuthorMapper authorMapper;
+    public Author create(Author author) {
+        AuthorEntity entity = authorMapper.toEntity(author);
 
-    public Author create(Author book) {
-        authors.add(book);
-        return book;
+        entity = authorsRepository.save(entity);
+        return authorMapper.toDto(entity);
+
     }
-    public Author remove(Author book) {
-        authors.remove(book);
-        return book;
+    public void remove(Author author) throws EntityNotFoundException {
+        authorsRepository.findById(author.getId()).orElseThrow(()-> new EntityNotFoundException("Author with id " + author.getId() + " not found"));
+        authorsRepository.deleteById(author.getId());
     }
 
     public List<Author> getAuthors() {
-        return authors;
+        return authorsRepository.findAll().stream().map(authorMapper::toDto).toList();
     }
 }
