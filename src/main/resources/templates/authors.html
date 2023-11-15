@@ -15,7 +15,7 @@
             <td>LastName</td>
             <td>Age</td>
         </thead>
-        <tr>
+        <tr th:each="author: ${authors}">
             <td>1</td>
             <td th:text="${author.name}"></td>
             <td th:text="${author.lastName}"></td>
