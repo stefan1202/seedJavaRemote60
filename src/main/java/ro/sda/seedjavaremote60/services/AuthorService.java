@@ -10,6 +10,7 @@ import ro.sda.seedjavaremote60.repositories.AuthorsRepository;
 
 import java.util.List;
 
+
 @Service
 @RequiredArgsConstructor
 public class AuthorService {
@@ -29,5 +30,9 @@ public class AuthorService {
 
     public List<Author> getAuthors() {
         return authorsRepository.findAll().stream().map(authorMapper::toDto).toList();
+    }
+
+    public List<Author> findAuthorsByName(String name) {
+        return authorsRepository.findAllByNameStartingWith(name).stream().map(authorMapper::toDto).toList();
     }
 }

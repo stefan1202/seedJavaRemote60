@@ -34,8 +34,13 @@ public class AuthorController {
     }
 
     @GetMapping("/list")
-    public String listAuthors (Model model){
-        model.addAttribute("authors",authorService.getAuthors());
+    public String listAuthors (@RequestParam(name="name",required = false) String name, Model model){
+        if (name!=null){
+            model.addAttribute("authors", authorService.findAuthorsByName(name));
+        }else {
+            model.addAttribute("authors", authorService.getAuthors());
+        }
         return "authors";
     }
+
 }
