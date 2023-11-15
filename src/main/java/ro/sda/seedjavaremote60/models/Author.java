@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class Author {
     @NotNull
-    @Length(min = 3,max = 50, message = "Name must contain between 3 and 50 characters")
+    @Length(min = 2,max = 50, message = "Name must contain between 2 and 50 characters")
     private String name;
     @NotNull
     @Length(min = 3,max = 50, message = "LastName must contain between 3 and 50 characters")
