@@ -14,6 +14,7 @@ public class AuthorMapper implements Mapper<Author, AuthorEntity>{
                 .age(entity.getVarsta())
                 .name(entity.getName())
                 .lastName(entity.getLastName())
+                .id(entity.getAuthorId())
                 .build();
     }
 
@@ -23,6 +24,7 @@ public class AuthorMapper implements Mapper<Author, AuthorEntity>{
                 .name(dto.getName())
                 .lastName(dto.getLastName())
                 .varsta(dto.getAge())
+                .authorId(dto.getId())
                 .build();
     }
 }

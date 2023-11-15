@@ -35,4 +35,10 @@ public class AuthorService {
     public List<Author> findAuthorsByName(String name) {
         return authorsRepository.findAllByNameStartingWith(name).stream().map(authorMapper::toDto).toList();
     }
+
+    public Author findAuthorByID(Long id) throws EntityNotFoundException {
+        AuthorEntity entity = authorsRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Author with id " + id + " not found"));
+
+        return authorMapper.toDto(entity);
+    }
 }

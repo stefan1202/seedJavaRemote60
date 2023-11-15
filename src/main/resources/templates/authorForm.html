@@ -10,7 +10,8 @@
 <div class="container">
     <h1>Hello World <span th:text="${name}"></span></h1>
     <div class="row">
-        <form th:object="${formObject}" th:action="@{author/create}" th:method="post">
+        <form th:object="${formObject}" th:action="@{/author/create}" th:method="post">
+            <input hidden="true" th:type="text" th:field="*{id}" id="id" class="form-control">
             <div class="col-4">
                 <label for="name">Name</label>
                 <input th:type="text" th:field="*{name}" id="name" class="form-control">

@@ -8,18 +8,25 @@
 </head>
 <body>
 <div class="container">
+    <a th:href="@{/author}" class="btn btn-primary">Add Author</a>
     <table>
         <thead>
             <td>No</td>
             <td>Name</td>
             <td>LastName</td>
             <td>Age</td>
+            <td>Actions</td>
         </thead>
         <tr th:each="author: ${authors}">
-            <td>1</td>
+            <td th:text="${author.id}"></td>
             <td th:text="${author.name}"></td>
             <td th:text="${author.lastName}"></td>
             <td th:text="${author.age}"></td>
+            <td>
+                <a th:href="@{/author/edit/{authorID}(authorID=${author.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/author/delete/{authorID}(authorID=${author.id})}" class="btn btn-primary">Delete</a>
+            </td>
+
         </tr>
     </table>
 </div>

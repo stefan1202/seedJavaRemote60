@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
 import ro.sda.seedjavaremote60.models.Author;
 import ro.sda.seedjavaremote60.services.AuthorService;
 
@@ -21,6 +22,13 @@ public class AuthorController {
     public String helloWorld(@RequestParam(required = false) String name,  Model model){
         model.addAttribute("name",name);
         model.addAttribute("formObject", new Author());
+        return "authorForm";
+    }
+
+    @GetMapping("/edit/{authorID}")
+    public String editAuthor(@PathVariable(name="authorID") Long id,  Model model) throws EntityNotFoundException {
+        Author author = authorService.findAuthorByID(id);
+        model.addAttribute("formObject", author);
         return "authorForm";
     }
 
