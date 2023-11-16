@@ -1,5 +1,6 @@
 package ro.sda.seedjavaremote60.services;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.sda.seedjavaremote60.entities.AuthorEntity;
 import ro.sda.seedjavaremote60.entities.BookEntity;
@@ -30,6 +31,12 @@ public class BookService {
 
     public List<Book> getAllBooks() {
         return bookRepository.findAll().stream().map(bookMapper::toDto).toList();
+    }
+
+    public List<Book> getAllBooksSorted(String sort, String direction) {
+        Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sortBy = Sort.by(sortDirection, sort);
+        return bookRepository.findAll(sortBy).stream().map(bookMapper::toDto).toList();
     }
 
     public void remove(Book book) throws EntityNotFoundException {

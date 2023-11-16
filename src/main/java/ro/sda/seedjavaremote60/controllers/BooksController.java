@@ -6,9 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import ro.sda.seedjavaremote60.entities.BookEntity;
 import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
 import ro.sda.seedjavaremote60.models.Book;
 import ro.sda.seedjavaremote60.services.BookService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/book")
@@ -39,11 +42,30 @@ public class BooksController {
     }
 
     @GetMapping("/list")
-    public String listBooks(@RequestParam(name="title",required = false) String title, Model model){
-        if(title!=null) {
-            model.addAttribute("books", bookService.findBookByTitle(title));
+    public String listBooks(@RequestParam(name="title",required = false) String title,
+                            @RequestParam(name="sort",required = false) String sort,
+                            @RequestParam(name="direction",required = false) String direction,
+                            Model model){
+        if (direction == null || (!"asc".equals(direction) && !"desc".equals(direction))) {
+            direction = "asc";
         }
-        model.addAttribute("books", bookService.getAllBooks());
+        List<Book> books = bookService.getAllBooks();
+
+        if (title != null) {
+            books = bookService.findBookByTitle(title);
+        }
+
+        if (sort != null) {
+            books = bookService.getAllBooksSorted(sort, direction);
+        }
+
+        String newDirection = "asc".equals(direction) ? "desc" : "asc";
+
+        // Add attributes to the model
+        model.addAttribute("books", books);
+        model.addAttribute("currentSort", sort);
+        model.addAttribute("currentDirection", newDirection);
+
         return "books";
     }
 }

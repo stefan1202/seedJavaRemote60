@@ -12,10 +12,10 @@
   <table>
     <thead>
       <tr>
-        <td>id</td>
-        <td>Title</td>
-        <td>Released year</td>
-        <td>No. pages</td>
+        <td><a th:href="@{/book/list(sort=${'id'}, direction=${currentDirection})}">ID</a></td>
+        <td><a th:href="@{/book/list(sort=${'title'}, direction=${currentDirection})}">Title</a></td>
+        <td><a th:href="@{/book/list(sort=${'publishedYear'}, direction=${currentDirection})}">Published Year</a></td>
+        <td><a th:href="@{/book/list(sort=${'noOfPages'}, direction=${currentDirection})}">No. Pages</a></td>
       </tr>
     </thead>
     <tbody>
