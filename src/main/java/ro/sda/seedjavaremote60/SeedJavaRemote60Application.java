@@ -8,6 +8,9 @@ public class SeedJavaRemote60Application {
 
     public static void main(String[] args) {
         SpringApplication.run(SeedJavaRemote60Application.class, args);
+        System.out.println("-----------------------------------------------------");
+        System.out.println("-----------------Application started-----------------");
+        System.out.println("-----------------------------------------------------");
     }
 
 }
