@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import ro.sda.seedjavaremote60.entities.BookEntity;
 import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
 import ro.sda.seedjavaremote60.models.Book;
 import ro.sda.seedjavaremote60.services.BookService;
@@ -34,7 +33,7 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute("bookForm") @Valid Book book, Errors validationErrors, Model model){
+    public String createBook(@ModelAttribute("bookForm") @Valid Book book, Errors validationErrors){
         if(validationErrors.hasErrors()) return "bookForm";
 
         bookService.createBook(book);
@@ -46,7 +45,7 @@ public class BooksController {
                             @RequestParam(name="sort",required = false) String sort,
                             @RequestParam(name="direction",required = false) String direction,
                             Model model){
-        if (direction == null || (!"asc".equals(direction) && !"desc".equals(direction))) {
+        if (!"asc".equals(direction) && !"desc".equals(direction)) {
             direction = "asc";
         }
         List<Book> books = bookService.getAllBooks();
@@ -67,5 +66,11 @@ public class BooksController {
         model.addAttribute("currentDirection", newDirection);
 
         return "books";
+    }
+
+    @GetMapping("/delete/{bookID}")
+    public String deleteBooks(@PathVariable Long bookID) throws EntityNotFoundException {
+        bookService.deleteBookByID(bookID);
+        return "redirect:/book/list";
     }
 }
