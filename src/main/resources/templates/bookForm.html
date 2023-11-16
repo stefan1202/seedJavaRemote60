@@ -8,31 +8,35 @@
 </head>
 <body>
     <div class="container">
-        <form th:action="@{/book/create}" th:object="${bookForm}" th:method="post">
-            <div class="col-3">
-                <label for="title">Book Title:</label>
-                <input th:type="text" th:field="*{title}" id="title" class="form-control">
-                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
-            </div>
-            <div class="col-3">
-                <label for="publishedYear">Published Year:</label>
-                <input th:type="text" th:field="*{publishedYear}" id="publishedYear" class="form-control">
-                <span th:if="${#fields.hasErrors('publishedYear')}" th:errors="*{publishedYear}" class="text-danger"></span>
-            </div>
-    <!--        <div class="col-3">-->
-    <!--            <label for="title">Autho</label>-->
-    <!--            <input th:type="text" th:field="*{title}" id="title" class="form-control">-->
-    <!--            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>-->
-    <!--        </div>-->
-            <div class="col-3">
-                <label for="noOfPages">Number of pages:</label>
-                <input th:type="text" th:field="*{noOfPages}" id="noOfPages" class="form-control">
-                <span th:if="${#fields.hasErrors('noOfPages')}" th:errors="*{noOfPages}" class="text-danger"></span>
-            </div>
-            <div class="col-3">
-                <input class="btn-primary" type="submit"/>
-            </div>
-        </form>
+        <h1 th:text="${bookFormObject.id == null} ? 'Add book' : 'Edit book'"></h1>
+        <div class="row">
+            <form th:action="@{/book/create}" th:object="${bookFormObject}" th:method="post">
+                <input hidden="true" th:type="text" th:field="*{id}" id="id" class="form-control">
+                <div class="col-3">
+                    <label for="title">Book Title:</label>
+                    <input th:type="text" th:field="*{title}" id="title" class="form-control">
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label for="publishedYear">Published Year:</label>
+                    <input th:type="text" th:field="*{publishedYear}" id="publishedYear" class="form-control">
+                    <span th:if="${#fields.hasErrors('publishedYear')}" th:errors="*{publishedYear}" class="text-danger"></span>
+                </div>
+        <!--        <div class="col-3">-->
+        <!--            <label for="title">Author</label>-->
+        <!--            <input th:type="text" th:field="*{title}" id="title" class="form-control">-->
+        <!--            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>-->
+        <!--        </div>-->
+                <div class="col-3">
+                    <label for="noOfPages">Number of pages:</label>
+                    <input th:type="text" th:field="*{noOfPages}" id="noOfPages" class="form-control">
+                    <span th:if="${#fields.hasErrors('noOfPages')}" th:errors="*{noOfPages}" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <input class="btn-primary" type="submit"/>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

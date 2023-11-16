@@ -18,7 +18,7 @@ public class BookMapper implements Mapper<Book, BookEntity>{
             return null;
         }
         return Book.builder()
-                .bookId(entity.getId())
+                .id(entity.getId())
                 .title(entity.getTitle())
                 .author(authorMapper.toDto(entity.getAuthorEntity()))
                 .noOfPages(entity.getNoOfPages())
@@ -33,8 +33,8 @@ public class BookMapper implements Mapper<Book, BookEntity>{
         }
         return BookEntity.builder()
                 .authorEntity(authorMapper.toEntity(dto.getAuthor()))
-                .Title(dto.getTitle())
-                .id(dto.getBookId())
+                .title(dto.getTitle())
+                .id(dto.getId())
                 .noOfPages(dto.getNoOfPages())
                 .publishedYear(dto.getPublishedYear())
                 .build();
