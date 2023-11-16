@@ -1,20 +1,18 @@
 package ro.sda.seedjavaremote60.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+@Entity(name = "books")
+@Table(name = "books")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookEntity {
-    private String Title;
+    private String title;
     private int publishedYear;
     @ManyToOne
     private AuthorEntity authorEntity;

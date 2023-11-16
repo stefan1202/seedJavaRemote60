@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <a th:href="@{/book}" class="btn btn-primary">Add Book</a>
+  <table>
+    <thead>
+      <tr>
+        <td><a th:href="@{/book/list(sort=${'id'}, direction=${currentDirection})}">ID</a></td>
+        <td><a th:href="@{/book/list(sort=${'title'}, direction=${currentDirection})}">Title</a></td>
+        <td><a th:href="@{/book/list(sort=${'publishedYear'}, direction=${currentDirection})}">Published Year</a></td>
+        <td><a th:href="@{/book/list(sort=${'noOfPages'}, direction=${currentDirection})}">No. Pages</a></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="bookCreated: ${books}">
+        <td th:text="${bookCreated.id}"></td>
+        <td th:text="${bookCreated.title}"></td>
+        <td th:text="${bookCreated.publishedYear}"></td>
+        <td th:text="${bookCreated.noOfPages}"></td>
+        <td>
+          <a th:href="@{/book/edit/{bookID}(bookID=${bookCreated.id})}" class="btn btn-primary">Edit</a>
+          <a th:href="@{/book/delete/{bookID}(bookID=${bookCreated.id})}" class="btn btn-primary">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>

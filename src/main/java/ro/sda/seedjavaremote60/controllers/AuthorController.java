@@ -21,14 +21,14 @@ public class AuthorController {
     @GetMapping("")
     public String createAuthor(@RequestParam(required = false) String name, Model model){
         model.addAttribute("name",name);
-        model.addAttribute("formObject", new Author());
+        model.addAttribute("authorFormObject", new Author());
         return "authorForm";
     }
 
     @GetMapping("/edit/{authorID}")
     public String editAuthor(@PathVariable(name="authorID") Long id,  Model model) throws EntityNotFoundException {
         Author author = authorService.findAuthorByID(id);
-        model.addAttribute("formObject", author);
+        model.addAttribute("authorFormObject", author);
         return "authorForm";
     }
     @GetMapping("/delete/{authorID}")
@@ -38,7 +38,7 @@ public class AuthorController {
     }
 
     @PostMapping("/create")
-    public String createAuthor(@ModelAttribute("formObject") @Valid Author author, Errors errors, Model model){
+    public String createAuthor(@ModelAttribute("authorFormObject") @Valid Author author, Errors errors, Model model){
         if (errors.hasErrors()){
             return "authorForm";
         }
