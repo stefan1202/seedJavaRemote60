@@ -46,7 +46,7 @@ public class AuthorController {
         return "redirect:/author/list";
     }
 
-    @GetMapping("/list")
+    @RequestMapping("/list")
     public String listAuthors (@RequestParam(name="name",required = false) String name, Model model){
         if (name!=null){
             model.addAttribute("authors", authorService.findAuthorsByName(name));
