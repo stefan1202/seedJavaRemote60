@@ -2,11 +2,9 @@ package ro.sda.seedjavaremote60.services;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ro.sda.seedjavaremote60.entities.AuthorEntity;
 import ro.sda.seedjavaremote60.entities.BookEntity;
 import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
 import ro.sda.seedjavaremote60.mappers.BookMapper;
-import ro.sda.seedjavaremote60.models.Author;
 import ro.sda.seedjavaremote60.models.Book;
 import ro.sda.seedjavaremote60.repositories.BookRepository;
 
