@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-3">
                     <label for="file">Picture:</label>
-                    <input type="file"  id="file" name="file" class="form-control" max="10MB">
+                    <input type="file"  id="file" name="file" class="form-control" max="10MB" accept="image/png">
                     <span th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}" class="text-danger"></span>
                 </div>
                 <div class="col-3">
