@@ -23,6 +23,7 @@ public class BookMapper implements Mapper<Book, BookEntity>{
                 .author(authorMapper.toDto(entity.getAuthorEntity()))
                 .noOfPages(entity.getNoOfPages())
                 .publishedYear(entity.getPublishedYear())
+                .picture(entity.getPicture())
                 .build();
     }
 
@@ -37,6 +38,7 @@ public class BookMapper implements Mapper<Book, BookEntity>{
                 .id(dto.getId())
                 .noOfPages(dto.getNoOfPages())
                 .publishedYear(dto.getPublishedYear())
+                .picture(dto.getPicture())
                 .build();
     }
 }

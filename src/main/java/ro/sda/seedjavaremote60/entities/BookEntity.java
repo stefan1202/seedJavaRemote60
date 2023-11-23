@@ -21,6 +21,8 @@ public class BookEntity {
     @Id
     @GeneratedValue
     private Long id;
+    @Lob()
+    private String picture;
 
 
 }

@@ -16,6 +16,7 @@
         <td><a th:href="@{/book/list(sort=${'title'}, direction=${currentDirection})}">Title</a></td>
         <td><a th:href="@{/book/list(sort=${'publishedYear'}, direction=${currentDirection})}">Published Year</a></td>
         <td><a th:href="@{/book/list(sort=${'noOfPages'}, direction=${currentDirection})}">No. Pages</a></td>
+        <td>Picture</td>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,10 @@
         <td th:text="${bookCreated.title}"></td>
         <td th:text="${bookCreated.publishedYear}"></td>
         <td th:text="${bookCreated.noOfPages}"></td>
+        <td >
+<!--          <p th:text="${'data:image/jpeg;base64, '+ ${bookCreated.picture}}"></p>-->
+          <img th:if="${bookCreated.picture !=null}" th:src="@{'data:image/jpeg;base64,'+${bookCreated.picture}}" height="60" >
+        </td>
         <td>
           <a th:href="@{/book/edit/{bookID}(bookID=${bookCreated.id})}" class="btn btn-primary">Edit</a>
           <a th:href="@{/book/delete/{bookID}(bookID=${bookCreated.id})}" class="btn btn-primary">Delete</a>

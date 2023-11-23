@@ -10,7 +10,7 @@
     <div class="container">
         <h1 th:text="${bookFormObject.id == null} ? 'Add book' : 'Edit book'"></h1>
         <div class="row">
-            <form th:action="@{/book/create}" th:object="${bookFormObject}" th:method="post">
+            <form th:action="@{/book/create}" enctype="multipart/form-data" th:object="${bookFormObject}" th:method="post">
                 <input hidden="true" th:type="text" th:field="*{id}" id="id" class="form-control">
                 <div class="col-3">
                     <label for="title">Book Title:</label>
@@ -31,6 +31,11 @@
                     <label for="noOfPages">Number of pages:</label>
                     <input th:type="text" th:field="*{noOfPages}" id="noOfPages" class="form-control">
                     <span th:if="${#fields.hasErrors('noOfPages')}" th:errors="*{noOfPages}" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label for="file">Picture:</label>
+                    <input type="file"  id="file" name="file" class="form-control" max="10MB">
+                    <span th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}" class="text-danger"></span>
                 </div>
                 <div class="col-3">
                     <input class="btn-primary" type="submit"/>

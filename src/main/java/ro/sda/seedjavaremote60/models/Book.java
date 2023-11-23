@@ -24,4 +24,6 @@ public class Book {
     @Min(value = 10, message = "The book must have at least 10 pages")
     private int noOfPages;
     private Long id;
+
+    private String picture;
 }

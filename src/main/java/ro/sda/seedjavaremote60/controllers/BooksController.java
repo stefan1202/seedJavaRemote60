@@ -2,19 +2,24 @@ package ro.sda.seedjavaremote60.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ro.sda.seedjavaremote60.exceptions.EntityNotFoundException;
 import ro.sda.seedjavaremote60.models.Book;
 import ro.sda.seedjavaremote60.services.BookService;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
 @RequestMapping("/book")
 @RequiredArgsConstructor
+@Slf4j
 public class BooksController {
 
     private final BookService bookService;
@@ -33,9 +38,18 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute("bookForm") @Valid Book book, Errors validationErrors){
-        if(validationErrors.hasErrors()) return "bookForm";
-
+    public String createBook(@RequestParam("file") MultipartFile photo, @ModelAttribute("bookForm") @Valid Book book, Errors validationErrors){
+        if(validationErrors.hasErrors()){
+            return "bookForm";
+        }
+        if(!photo.isEmpty()){
+            try {
+                String fileEncoded = Base64.getMimeEncoder().encodeToString(photo.getBytes());
+                book.setPicture(fileEncoded);
+            }catch (IOException ex){
+                log.error("Error converting image",ex);
+            }
+        }
         bookService.createBook(book);
         return "redirect:/book/list";
     }
